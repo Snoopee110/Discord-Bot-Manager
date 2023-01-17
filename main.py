@@ -32,8 +32,6 @@ class BotManager(tk.Tk):
         self.resizable(True, True)
 
         # Create the base folder structure
-        if not os.path.exists("cogs"):
-            os.makedirs("cogs")
         if not os.path.exists("instances"):
             os.makedirs("instances")
         if not os.path.exists("base_folder"):
@@ -68,30 +66,32 @@ class BotManager(tk.Tk):
         self.about_menu.add_command(label="Github", command=self.open_github)
         self.about_menu.add_command(label="Discord", command=self.open_discord_serverinvite)
 
-        self.cog_list = tk.Listbox(self, width=30, height=10)
-        self.cog_list.grid(row=0, column=0, padx=10, pady=10)
-
         self.instance_list = tk.Listbox(self, width=30, height=10)
-        self.instance_list.grid(row=1, column=0, padx=10, pady=10)
-        self.instance_list.bind("<Double-Button-1>", self.open_folder)
-
-        self.create_instance_button = tk.Button(self, text="Create Instance", command=self.create_instance)
-        self.create_instance_button.grid(row=0, column=1, padx=10, pady=10)
-
-        self.delete_instance_button = tk.Button(self, text="Delete Instance", command=self.delete_instance)
-        self.delete_instance_button.grid(row=1, column=1, padx=10, pady=10)
-
-        self.open_instance_button = tk.Button(self, text="Open Folder in Explorer", command=self.open_instance)
-        self.open_instance_button.grid(row=2, column=0, padx=10, pady=10)
-
-        self.create_invite_button = tk.Button(self, text="Create Invite", command=self.create_invite)
-        self.create_invite_button.grid(row=2, column=1, padx=10, pady=10)
-
-        self.update_env_button = tk.Button(self, text="Update .env", command=self.update_env)
-        self.update_env_button.grid(row=3, column=1, padx=10, pady=10)
-
-        self.refresh_lists_button = tk.Button(self, text="Refresh Lists", command=self.refresh_lists)
-        self.refresh_lists_button.grid(row=4, column=1, padx=10, pady=10)
+        self.instance_list.place(x=10, y=10)
+        
+        self.cog_list = tk.Listbox(self, width=30, height=10)
+        self.cog_list.place(x=10, y=200)
+# 
+        # self.create_instance_button = tk.Button(self, text="Create Instance", command=self.create_instance)
+        # self.create_instance_button.pack(side="left", padx=10, pady=20)
+# 
+        # self.delete_instance_button = tk.Button(self, text="Delete Instance", command=self.delete_instance)
+        # self.delete_instance_button.pack(side="left", padx=15, pady=20)
+# 
+        # self.open_instance_button = tk.Button(self, text="Open Folder in Explorer", command=self.open_instance)
+        # self.open_instance_button.pack(side="left", padx=20, pady=20)
+# 
+        # self.create_invite_button = tk.Button(self, text="Create Invite", command=self.create_invite)
+        # self.create_invite_button.pack(side="left", padx=25, pady=20)
+# 
+        # self.update_env_button = tk.Button(self, text="Update .env", command=self.update_env)
+        # self.update_env_button.pack(side="left", padx=30, pady=20)
+# 
+        # self.refresh_lists_button = tk.Button(self, text="Refresh Lists", command=self.refresh_lists)
+        # self.refresh_lists_button.pack(side="left", padx=35, pady=20)
+# 
+        # self.upload_github = tk.Button(self, text="Upload to Github", command=self.upload_github)
+        # self.upload_github.pack(side="left", padx=40, pady=20)
 
         self.populate_cog_list()
         self.populate_instance_list()
@@ -172,6 +172,11 @@ class BotManager(tk.Tk):
         # Open the github repo in the browser.
         # This will be done by using the webbrowser module to open the link.
         webbrowser.open("https://www.github.com/snoopee110")
+
+    def upload_github(self):
+        # Upload the code to github.
+        # This will be done by using the git module to push the code.
+        pass
     
     def open_discord_serverinvite(self):
         # Open the discord server invite in the browser.
